@@ -1,0 +1,85 @@
+#navbar {
+    width: 45%;
+    padding: 70px 5px;
+    text-align: center; background-color:#333333; height: 98vh
+}
+
+.nav {
+    display: inline;
+}
+
+#sobreMim {
+    height: max-content;
+}
+a {
+    color:#eddcd2 !important;
+}
+.conteudo {
+    color:#f0efeb
+}
+#avatar {
+    border: 1px solid;
+    border-radius: 50%;
+    background-color:#548A58;
+}
+
+.card {
+    border-radius: 10px;
+}
+
+html, body {
+    height: 100vh;
+}
+
+.container-fluid {
+    height: 100vh;
+}
+
+.titulo {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    color:#548A58
+}
+
+.texto-comum{
+    color:#A7C5A9;
+    font-family: 'Roboto', sans-serif;
+}
+
+.card {
+    font-weight: bold;
+    background-color: #b7b7a4;
+    color:#548A58;
+}
+
+.card-text {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 450;
+}
+
+strong {
+    font-weight: bolder;
+}
+
+#conteudo {
+    background-color:#464646;
+    vertical-align: center;
+    height: 98vh;
+    position: relative;
+    font-family: 'Roboto', sans-serif;
+}
+
+footer {
+    width: 100%;
+    background-color:aquamarine;
+    height: 2vh;
+}
+
+footer p {
+    text-align: right;
+    font-size:7px   
+}
+
+i {
+    font-size:3rem;
+}

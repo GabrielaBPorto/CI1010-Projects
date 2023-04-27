@@ -1,6 +1,6 @@
 require 'fileutils'
 require 'active_record'
-require_relative 'migrations/migrate'
+require './migrations/migrate'
 require 'debugger';
 
 ActiveRecord::Base.establish_connection(

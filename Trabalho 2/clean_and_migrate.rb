@@ -12,7 +12,7 @@ end
 
 ActiveRecord::Base.connection.execute("DROP TABLE schema_migrations")
 
-FileUtils.rm('../my_database.sqlite3')
+FileUtils.rm('my_database.sqlite3')
 
 require_relative 'migrations/migrate'
 Migrate.new.change

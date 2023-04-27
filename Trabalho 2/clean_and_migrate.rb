@@ -14,7 +14,7 @@ end
 
 FileUtils.rm('./db/development.sqlite3')
 
-Migrate.new.change
+Migrate.change
 
 variable = 'me'
 puts variable

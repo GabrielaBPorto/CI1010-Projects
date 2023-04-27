@@ -1,6 +1,6 @@
 require 'active_record'
 
-class CreateIngredientsRecipes < ActiveRecord::Migration
+class CreateIngredientsRecipes < ActiveRecord::Migration[6.1]
   def change
     create_table :ingredients_recipes do |t|
       t.references :ingredient

@@ -16,5 +16,4 @@ FileUtils.rm('./db/development.sqlite3')
 
 Migrate.change
 
-variable = 'me'
-puts variable
+puts 'Done cleaning and running the migrations. You can see the database in db/development.sqlite3'

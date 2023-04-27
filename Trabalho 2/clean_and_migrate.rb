@@ -1,6 +1,7 @@
 require 'fileutils'
 require 'active_record'
 require_relative 'migrations/migrate'
+require 'debugger'; debugger
 
 ActiveRecord::Base.establish_connection(
   adapter: 'sqlite3',

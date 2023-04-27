@@ -1,7 +1,6 @@
 require 'fileutils'
 require 'active_record'
-require_relative 'migrations/migrate'
-# require 'debugger';
+
 
 ActiveRecord::Base.establish_connection(
   adapter: 'sqlite3',
@@ -14,7 +13,6 @@ end
 
 FileUtils.rm('./db/development.sqlite3')
 
-# debugger
-Migrate.change
+require_relative 'migrations/migrate'
 
 puts 'Done cleaning and running the migrations. You can see the database in db/development.sqlite3'

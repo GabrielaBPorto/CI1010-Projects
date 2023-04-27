@@ -1,6 +1,6 @@
 require 'active_record'
 
-class CreateValues < ActiveRecord::Migration[6.1]
+class CreateValues < ActiveRecord::Migration
   def change
     create_table :values do |t|
       t.float :taxes

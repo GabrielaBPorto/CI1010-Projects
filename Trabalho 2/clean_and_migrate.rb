@@ -1,9 +1,10 @@
 require 'fileutils'
 require 'active_record'
+require_relative 'migrations/migrate'
 
 ActiveRecord::Base.establish_connection(
   adapter: 'sqlite3',
-  database: '../my_database.sqlite3'
+  database: 'my_database.sqlite3'
 )
 
 ActiveRecord::Base.connection.tables.each do |table|
@@ -12,5 +13,4 @@ end
 
 FileUtils.rm('my_database.sqlite3')
 
-require_relative 'migrations/migrate'
 Migrate.new.change

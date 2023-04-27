@@ -9,7 +9,7 @@ require_relative 'create_recipes_requests'
 
 ActiveRecord::Base.establish_connection(
   adapter: 'sqlite3',
-  database: 'my_database.sqlite3'
+  database: '../my_database.sqlite3'
 )
 
 CreateValues.new.change

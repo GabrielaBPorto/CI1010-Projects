@@ -1,26 +1,49 @@
 #navbar {
     width: 45%;
     padding: 70px 5px;
-    text-align: center; background-color:#333333; height: 98vh
+    text-align: center; background-color:#1d3557; 
 }
 
 .nav {
     display: inline;
 }
 
+
+
 #sobreMim {
     height: max-content;
 }
-a {
-    color:#eddcd2 !important;
+
+.nav-link {
+    color: #a8dadc !important;
+    border-radius: 4px;
+    padding: 10px 20px;
+    text-decoration: none;
+    position: relative;
 }
+  
+.nav-link:before {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 0%;
+    height: 1px;
+    bottom: 0;
+    left: 0;
+    background-color: #a8dadc;
+    transition: width 0.5s ease-in-out;
+}
+  
+.nav-link:hover:before {
+    width: 100%;
+}
+
 .conteudo {
-    color:#f0efeb
+    color:#a8dadc;
 }
-#avatar {
-    border: 1px solid;
-    border-radius: 50%;
-    background-color:#548A58;
+
+p, a {
+    color: #a8dadc !important;
 }
 
 .card {
@@ -28,7 +51,7 @@ a {
 }
 
 html, body {
-    height: 100vh;
+    height: 98vh;
 }
 
 .container-fluid {
@@ -38,18 +61,30 @@ html, body {
 .titulo {
     font-family: 'Montserrat', sans-serif;
     font-weight: bold;
-    color:#548A58
+    color:#f1faee;
+    text-decoration: none;
+    transition: text-decoration 5.0s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+.titulo:hover {
+    text-decoration: underline double;
 }
 
 .texto-comum{
-    color:#A7C5A9;
+    color:#b8f2e6;
+    font-weight: 600;
+    font-size: 1rem;
     font-family: 'Roboto', sans-serif;
+    transition: font-size 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+.texto-comum:hover{
+    font-size: 1.01rem;
 }
 
 .card {
     font-weight: bold;
-    background-color: #b7b7a4;
-    color:#548A58;
+    background-color: #1d3557;
+    color:#b8f2e6;
 }
 
 .card-text {
@@ -62,7 +97,8 @@ strong {
 }
 
 #conteudo {
-    background-color:#464646;
+    background-color:#e63946;
+    opacity: 92%;
     vertical-align: center;
     height: 98vh;
     position: relative;
@@ -83,3 +119,34 @@ footer p {
 i {
     font-size:3rem;
 }
+
+.toggle-sub-menu {
+    display: none;
+  }
+  
+  .sub-nav {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease-out;
+  }
+  
+  .toggle-sub-menu:checked ~ .sub-nav {
+    max-height: 1000px;
+    transition: max-height 0.5s ease-in;
+  }
+
+  .image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 98vh; 
+  }
+  
+  .image-container img {
+    width: 50%; 
+    height: auto; 
+  }
+
+  ol {
+    list-style-type: circle;
+  }

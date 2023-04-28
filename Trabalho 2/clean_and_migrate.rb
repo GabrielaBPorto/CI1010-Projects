@@ -1,6 +1,5 @@
-require 'fileutils'
-require 'active_record'
 
+require 'active_record'
 
 ActiveRecord::Base.establish_connection(
   adapter: 'sqlite3',
@@ -10,8 +9,6 @@ ActiveRecord::Base.establish_connection(
 ActiveRecord::Base.connection.tables.each do |table|
   ActiveRecord::Base.connection.execute("DROP TABLE #{table}")
 end
-
-FileUtils.rm('./db/development.sqlite3')
 
 require_relative 'migrations/migrate'
 

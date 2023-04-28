@@ -6,6 +6,7 @@ ActiveRecord::Base.establish_connection(
 )
 
 ActiveRecord::Base.connection.tables.each do |table|
+  puts ActiveRecord::Base.connection.inspect
   ActiveRecord::Base.connection.execute("DROP TABLE #{table}")
 end
 

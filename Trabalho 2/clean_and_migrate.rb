@@ -12,7 +12,7 @@ end
 
 require_relative 'migrations/migrate'
 
-puts Migrate.new,methods
+puts Migrate.new.methods
 
 # Migrate.new.change
 

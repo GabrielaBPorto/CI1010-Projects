@@ -1,16 +1,21 @@
 require 'active_record'
+require 'fileutils'
 
-ActiveRecord::Base.establish_connection(
-  adapter: 'sqlite3',
-  database: 'db/development.sqlite3'
-)
+dir_path = File.dirname(__FILE__)
+files = Dir.glob(File.join(dir_path, "*"))
+puts files
 
-ActiveRecord::Base.connection.tables.each do |table|
-  # puts ActiveRecord::Base.connection.inspect
-  ActiveRecord::Base.connection.execute("DROP TABLE #{table}")
-end
+# ActiveRecord::Base.establish_connection(
+#   adapter: 'sqlite3',
+#   database: 'db/development.sqlite3'
+# )
 
-require_relative 'migrations/migrate'
+# ActiveRecord::Base.connection.tables.each do |table|
+#   # puts ActiveRecord::Base.connection.inspect
+#   ActiveRecord::Base.connection.execute("DROP TABLE #{table}")
+# end
+
+# require_relative 'migrations/migrate'
 
 # Migrate.change
 

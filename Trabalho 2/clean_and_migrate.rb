@@ -12,6 +12,12 @@ end
 
 require_relative 'migrations/migrate'
 
+# Set the project root
+@project_root = File.expand_path('..', __dir__)
+
+# Load a file from the project root
+require "#{@project_root}/lib/my_file.rb"
+
 puts Migrate.new.methods.private_methods
 
 # Migrate.new.change

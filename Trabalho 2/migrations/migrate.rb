@@ -11,7 +11,7 @@ class Migrate
   def self.change
     ActiveRecord::Base.establish_connection(
       adapter: 'sqlite3',
-      database: '/home/gabi/Faculdade/CI1010/CI1010-Projects/Trabalho\ 2/db/development.sqlite3'
+      database: '@/db/development.sqlite3'
     )
     
     CreateValues.new.change

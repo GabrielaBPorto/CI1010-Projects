@@ -12,6 +12,6 @@ end
 
 require_relative 'migrations/migrate'
 
-Migrate.new
+Migrate.new.change
 
 puts 'Done cleaning and running the migrations. You can see the database in db/development.sqlite3'

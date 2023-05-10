@@ -1,0 +1,12 @@
+body {
+	height: 80vh !important;
+	width: 80vw !important;
+}
+
+canvas {
+	border: 1px solid black;
+	border-radius: 20px;
+	height: 80vh !important;
+	width: 80vw !important;
+  }
+

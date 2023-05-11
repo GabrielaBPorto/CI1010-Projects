@@ -8,5 +8,13 @@ canvas {
 	border-radius: 20px;
 	height: 80vh !important;
 	width: 80vw !important;
+	transition: opacity 0.5s ease-in-out;
   }
-
+  
+  .fade-out {
+	opacity: 0;
+  }
+  
+  .fade-in {
+	opacity: 1;
+  }

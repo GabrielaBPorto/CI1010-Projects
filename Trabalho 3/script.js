@@ -64,9 +64,11 @@ function drawLine({x1, y1, x2, y2}) {
 
   function getMousePos(evt) {
 	const rect = canvas.getBoundingClientRect();
+	const scaleX = canvas.width / rect.width;
+	const scaleY = canvas.height / rect.height;
 	return {
-	  x: evt.clientX - rect.left,
-	  y: evt.clientY - rect.top
+		x: (evt.clientX - rect.left) * scaleX,
+		y: (evt.clientY - rect.top) * scaleY
 	};
   }
     
@@ -76,9 +78,6 @@ function drawLine({x1, y1, x2, y2}) {
 	return distance <= threshold;
   }
   
-
-  
-
   function onMouseDown(evt) {
 	const mousePos = getMousePos(evt)
 	if(!dragging){
@@ -86,6 +85,7 @@ function drawLine({x1, y1, x2, y2}) {
 	}
 	for(const line of lines){
 		console.log('line',line)
+		console.log('mousePos', mousePos)
 		if(isMouseOnLineStart(mousePos, line)){
 			console.log('IS CLOSE')
 		}
@@ -104,8 +104,8 @@ function drawLine({x1, y1, x2, y2}) {
 	canvas = document.getElementById('canvas');
 	ctx = canvas.getContext('2d');
 
-	// const refreshButtonC = document.getElementById("refresh-button-clear");
-	// refreshButtonC.addEventListener("click", () => refreshCanvas(() =>));
+	const refreshButtonC = document.getElementById("refresh-button-clear");
+	refreshButtonC.addEventListener("click", () => refreshCanvas(() => console.log('Refreshing screen with nothing')));
 
 	const refreshButton = document.getElementById("refresh-button-one-line");
 	refreshButton.addEventListener("click", () => refreshCanvas(addOneLine));

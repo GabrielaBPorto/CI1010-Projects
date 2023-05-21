@@ -13,6 +13,7 @@ let draggingCorner = {
 	y: 0
 }
 
+<<<<<<< HEAD
 
 let draggingLine = {
 	isDragging: false,
@@ -30,10 +31,17 @@ const TYPES = {
 	END: 1,
 	MIDDLE: 0,
 	LINE: 2
+=======
+const TYPES = {
+	START : -1,
+	END: 1,
+	MIDDLE: 0
+>>>>>>> 852a30a... Trabalho 2
 }
 const fadeDuration = 250;
 
 let lineColor  = 'black';
+<<<<<<< HEAD
 
 
 function treatOutofCanvas(x, y){
@@ -51,6 +59,19 @@ function treatOutofCanvas(x, y){
 	}
 	return { x, y };
 }
+=======
+
+
+
+   
+// function isMouseOnSTART(x, y) {
+// 	return Math.sqrt((x - STARTX) ** 2 + (y - STARTY) ** 2) < HALF_LINE_WIDTH;
+//   }
+  
+//   function isMouseOnEND(x, y) {
+// 	return Math.sqrt((x - ENDX) ** 2 + (y - ENDY) ** 2) < HALF_LINE_WIDTH;
+//   }
+>>>>>>> 852a30a... Trabalho 2
 
 function drawLine({x1, y1, x2, y2}) {
 	console.log(`desenhando uma linha (${x1}, ${y1}) ->(${x2}, ${y2})`)
@@ -61,6 +82,15 @@ function drawLine({x1, y1, x2, y2}) {
 	ctx.strokeStyle = lineColor;
 	ctx.stroke();
 }
+<<<<<<< HEAD
+=======
+
+function removeLineFromArray({x1, y1, x2, y2}) {
+	lines = lines.filter(line => {
+	  return !(line.x1 === x1 && line.y1 === y1 && line.x2 === x2 && line.y2 === y2);
+	});
+  }
+>>>>>>> 852a30a... Trabalho 2
 
 function removeLineFromArray({x1, y1, x2, y2}) {
 	lines = lines.filter(line => {
@@ -120,6 +150,13 @@ function areCoordinatesOnLine(a,b, line){
 	return { closestX, closestY, closeEnough: distance < threshold}
 }
 
+function areCoordinatesClose(a,b, x,y){
+	const threshold = 200;
+	const dx = Math.abs(a-x);
+	const dy = Math.abs(b-y);
+	return dx < threshold && dy <threshold;
+}
+
   function getDistanceFromLine({x, y}, line) {
 	const { x1, y1, x2, y2 } = line;
 	const A = x - x1;
@@ -169,6 +206,7 @@ function areCoordinatesOnLine(a,b, line){
   }
     
   function isMouseOnLine({x, y}, line) {
+<<<<<<< HEAD
 	if(areCoordinatesClose(line.x1, line.y1, x, y)){
 		return TYPES.START;
 	}
@@ -177,13 +215,19 @@ function areCoordinatesOnLine(a,b, line){
 	}
 	else if( areCoordinatesClose((line.x1 + line.x2)/2, (line.y1 + line.y2) /2, x,y )){
 		return TYPES.MIDDLE;
+=======
+	return {
+		closeTo: areCoordinatesClose(line.x1, line.y1, x, y) ? TYPES.START : areCoordinatesClose(line.x2, line.y2, x, y) ? TYPES.END : null
+>>>>>>> 852a30a... Trabalho 2
 	}
   }
+
   
   function onMouseDown(evt) {
 	
 	console.log('mousedown', evt.button)
 	const mousePos = getMousePos(evt)
+<<<<<<< HEAD
 	for(const line of lines){
 		if(evt.button === 0){
 			const closeTo = isMouseOnLine(mousePos, line);
@@ -211,6 +255,16 @@ function areCoordinatesOnLine(a,b, line){
 			const { closestX, closestY, closeEnough} = areCoordinatesOnLine(mousePos.x,mousePos.y, line);
 			if(closeEnough){
 				breakLine({x:closestX, y:closestY, oldLine: line});
+=======
+	// A primeira linha que encontrar vai pegar ela para mexer primariamente.
+	for(const line of lines){
+		const { closeTo } = isMouseOnLine(mousePos, line);
+		if(closeTo && (isCloseToType(closeTo, TYPES.START) || isCloseToType(closeTo, TYPES.END))){
+			if(!draggingCorner.isDragging){
+				draggingCorner.isDragging = true;
+				draggingCorner.line = line;
+				draggingCorner.cornerPosition = closeTo;
+>>>>>>> 852a30a... Trabalho 2
 			}
 		}
 	}
@@ -240,6 +294,7 @@ function areCoordinatesOnLine(a,b, line){
 	if(draggingCorner.isDragging){
 		draggingCorner.x = mousePos.x;
 		draggingCorner.y = mousePos.y;
+<<<<<<< HEAD
 	}
 	else if(draggingLine.isDragging){
 		draggingLine.dx = Math.abs(draggingLine.x3 - mousePos.x)
@@ -283,12 +338,21 @@ function areCoordinatesOnLine(a,b, line){
   
   function lineMovement(){
 	let x,y;
+=======
+		// cornerMovement();
+	}
+  }
+
+  function cornerMovement(){
+	lineColor = 'blue';
+>>>>>>> 852a30a... Trabalho 2
 	const newLine = {
 		x1: 0,
 		y1: 0,
 		x2: 0,
 		y2: 0
 	}
+<<<<<<< HEAD
 	newLine.x1 = draggingLine.x > draggingLine.x3 ? (draggingLine.line.x1) + draggingLine.dx : (draggingLine.line.x1) - draggingLine.dx;
 	newLine.y1 = draggingLine.y > draggingLine.y3 ? (draggingLine.line.y1) + draggingLine.dy : (draggingLine.line.y1) - draggingLine.dy;
 	newLine.x2 = draggingLine.x > draggingLine.x3 ? (draggingLine.line.x2) + draggingLine.dx : (draggingLine.line.x2) - draggingLine.dx;
@@ -304,12 +368,36 @@ function areCoordinatesOnLine(a,b, line){
 	refreshCanvas(drawAllPreviousLines)
 	drawLine(newLine)
 	draggingLine.line = newLine;
+=======
+	if(isCloseToType(draggingCorner.cornerPosition, TYPES.START)){
+		newLine.x1 = draggingCorner.x;
+		newLine.y1 = draggingCorner.y;
+		newLine.x2 = draggingCorner.line.x2;
+		newLine.y2 = draggingCorner.line.y2;
+		removeLineFromArray(draggingCorner.line);
+		lines.push(newLine)
+		refreshCanvas(drawAllPreviousLines)
+		drawLine(newLine)
+	}
+	else if (isCloseToType(draggingCorner.cornerPosition, TYPES.END)){
+		newLine.x1 = draggingCorner.line.x1;
+		newLine.y1 = draggingCorner.line.y1;
+		newLine.x2 = draggingCorner.x;
+		newLine.y2 = draggingCorner.y;
+		removeLineFromArray(draggingCorner.line);
+		lines.push(newLine)
+		refreshCanvas(drawAllPreviousLines)
+		drawLine(newLine)
+	}
+	lineColor = 'black';
+>>>>>>> 852a30a... Trabalho 2
   }
 
   function onMouseUp(evt) {
 	if(draggingCorner.isDragging){
 		draggingCorner.isDragging = false;
 		cornerMovement();
+<<<<<<< HEAD
 		lineColor = 'black';
 		
 		draggingCorner.line = null;
@@ -320,6 +408,10 @@ function areCoordinatesOnLine(a,b, line){
 		lineMovement();
 		draggingLine.line = null;
 	}
+=======
+		draggingCorner.line = null;
+	}
+>>>>>>> 852a30a... Trabalho 2
   }
 
   function isCloseToType(closeTo, type){
@@ -389,18 +481,37 @@ function areCoordinatesOnLine(a,b, line){
 	canvas.addEventListener("contextmenu", contextMenu);
 
 	lines = []
+<<<<<<< HEAD
 
 	lines.push({
+=======
+	refreshCanvas(addOneLine({
+>>>>>>> 852a30a... Trabalho 2
 		x1: 50,
 		y1: 50,
 		x2: canvas.width-100,
 		y2: canvas.height-50
+<<<<<<< HEAD
 	})
 	refreshCanvas(addOneLine)
   }
 
   function addOneLine(){
 	drawLine(lines[0]);
+  }
+
+  function drawAllPreviousLines(){
+	for(const line of lines){
+		drawLine(line);
+	}
+=======
+	}))
+  }
+
+  function addOneLine(line){
+	lines.push(line)
+	drawLine(line);
+>>>>>>> 852a30a... Trabalho 2
   }
 
   function drawAllPreviousLines(){

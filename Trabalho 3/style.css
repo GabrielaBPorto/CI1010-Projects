@@ -1,13 +1,7 @@
-body {
-	height: 80vh !important;
-	width: 80vw !important;
-}
 
 canvas {
 	border: 1px solid black;
 	border-radius: 20px;
-	height: 80vh !important;
-	width: 80vw !important;
 	transition: opacity 0.5s ease-in-out;
   }
   

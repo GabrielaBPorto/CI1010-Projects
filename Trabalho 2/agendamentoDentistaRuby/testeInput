@@ -1,0 +1,40 @@
+inserir paciente Gabriela,Porto,(41)995079848
+inserir paciente Marcella,Wandry
+
+editar paciente Marcella,Wandrey,(41)999363679
+
+remover paciente Marcella,
+
+
+inserir procedimento LimpezaDental,1
+inserir procedimento Siso,4
+inserir procedimento Aparelho,30
+
+editar procedimento Siso,2
+
+inserir procedimento x,10
+remover procedimento x
+
+
+inserir recurso Algodao,0.56,Siso
+inserir recurso Seringa,0.83,Siso
+inserir recurso Mascara,4.00,Siso
+inserir recurso Luva,46.00,LimpezaDental
+inserir recurso Babador,13.50,Aparelho
+
+
+editar recurso Algodao,58.00,Aparelho
+
+remover recurso Seringa
+
+inserir dentista Denise,90.00,(41)99568-8791
+inserir dentista Paulo,190.00,(41)99568-8791
+inserir dentista Denise2,90.00,(41)99568-8791
+
+editar dentista Denise,150.00,(41)99787-8283
+
+remover dentista Denise2
+
+termino
+
+inserir agendamento 03/01/2020,09:30:00,

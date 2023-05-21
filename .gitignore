@@ -1,2 +1,6 @@
 Trabalho\ 2/ruby/2.7.0
 Trabalho\ 2/teste/ruby/2.7.0
+
+*.gem
+*.gemspec
+gems/

@@ -13,6 +13,18 @@ let draggingCorner = {
 	y: 0
 }
 
+
+let draggingLine = {
+	isDragging: false,
+	line : null,
+	x3 : 0,
+	y3 : 0,
+	x: 0,
+	y: 0,
+	dx : 0,
+	dy : 0
+}
+
 const TYPES = {
 	START : -1,
 	END: 1,
@@ -23,15 +35,21 @@ const fadeDuration = 250;
 let lineColor  = 'black';
 
 
-
-   
-// function isMouseOnSTART(x, y) {
-// 	return Math.sqrt((x - STARTX) ** 2 + (y - STARTY) ** 2) < HALF_LINE_WIDTH;
-//   }
-  
-//   function isMouseOnEND(x, y) {
-// 	return Math.sqrt((x - ENDX) ** 2 + (y - ENDY) ** 2) < HALF_LINE_WIDTH;
-//   }
+function treatOutofCanvas(x, y){
+	if(x < 0){
+		x = 0;
+	}
+	else if ( x > canvas.width){
+		x = canvas.width -1;
+	}
+	if(y < 0){
+		y = 0;
+	}
+	else if ( y > canvas.height){
+		y = canvas.height - 1;
+	}
+	return { x, y };
+}
 
 function drawLine({x1, y1, x2, y2}) {
 	console.log(`desenhando uma linha (${x1}, ${y1}) ->(${x2}, ${y2})`)
@@ -51,9 +69,10 @@ function removeLineFromArray({x1, y1, x2, y2}) {
 
 
 function areCoordinatesClose(a,b, x,y){
-	const threshold = 200;
+	const threshold = 50;
 	const dx = Math.abs(a-x);
 	const dy = Math.abs(b-y);
+	console.log(dx < threshold && dy <threshold)
 	return dx < threshold && dy <threshold;
 }
 
@@ -106,22 +125,42 @@ function areCoordinatesClose(a,b, x,y){
   }
     
   function isMouseOnLine({x, y}, line) {
-	return {
-		closeTo: areCoordinatesClose(line.x1, line.y1, x, y) ? TYPES.START : areCoordinatesClose(line.x2, line.y2, x, y) ? TYPES.END : null
+	console.log('verification of line', x,y, line)
+	if(areCoordinatesClose(line.x1, line.y1, x, y)){
+		return TYPES.START;
+	}
+	else if( areCoordinatesClose(line.x2, line.y2, x, y)){
+		return TYPES.END;
+	}
+	else if( areCoordinatesClose((line.x1 + line.x2)/2, (line.y1 + line.y2) /2, x,y )){
+		return TYPES.MIDDLE;
 	}
   }
 
   
   function onMouseDown(evt) {
+	console.log('mousedown')
 	const mousePos = getMousePos(evt)
-	// A primeira linha que encontrar vai pegar ela para mexer primariamente.
 	for(const line of lines){
-		const { closeTo } = isMouseOnLine(mousePos, line);
+		const closeTo = isMouseOnLine(mousePos, line);
+		console.log('closeTo', closeTo, TYPES.MIDDLE)
+		//Realiza a movimentação das pontas
 		if(closeTo && (isCloseToType(closeTo, TYPES.START) || isCloseToType(closeTo, TYPES.END))){
 			if(!draggingCorner.isDragging){
+				console.log('draggingCorner')
 				draggingCorner.isDragging = true;
 				draggingCorner.line = line;
 				draggingCorner.cornerPosition = closeTo;
+			}
+		}
+		//Realiza a movimentação da linha
+		else if(closeTo == 0 && (isCloseToType(closeTo, TYPES.MIDDLE))){
+			if(!draggingLine.isDragging){
+				console.log('draggingLine')
+				draggingLine.isDragging = true;
+				draggingLine.line = line;
+				draggingLine.x3 = (line.x1 + line.x2) / 2;
+				draggingLine.y3 = (line.y1 + line.y2) / 2;
 			}
 		}
 	}
@@ -132,7 +171,12 @@ function areCoordinatesClose(a,b, x,y){
 	if(draggingCorner.isDragging){
 		draggingCorner.x = mousePos.x;
 		draggingCorner.y = mousePos.y;
-		// cornerMovement();
+	}
+	else if(draggingLine.isDragging){
+		draggingLine.dx = Math.abs(draggingLine.x3 - mousePos.x)
+		draggingLine.dy = Math.abs(draggingLine.y3 - mousePos.y)
+		draggingLine.x = mousePos.x;
+		draggingLine.y = mousePos.y;
 	}
   }
 
@@ -150,6 +194,7 @@ function areCoordinatesClose(a,b, x,y){
 		newLine.x2 = draggingCorner.line.x2;
 		newLine.y2 = draggingCorner.line.y2;
 		removeLineFromArray(draggingCorner.line);
+		draggingCorner.line = newLine;
 		lines.push(newLine)
 		refreshCanvas(drawAllPreviousLines)
 		drawLine(newLine)
@@ -166,6 +211,31 @@ function areCoordinatesClose(a,b, x,y){
 	}
 	lineColor = 'black';
   }
+  
+  function lineMovement(){
+	let x,y;
+	const newLine = {
+		x1: 0,
+		y1: 0,
+		x2: 0,
+		y2: 0
+	}
+	newLine.x1 = draggingLine.x > draggingLine.x3 ? (draggingLine.line.x1) + draggingLine.dx : (draggingLine.line.x1) - draggingLine.dx;
+	newLine.y1 = draggingLine.y > draggingLine.y3 ? (draggingLine.line.y1) + draggingLine.dy : (draggingLine.line.y1) - draggingLine.dy;
+	newLine.x2 = draggingLine.x > draggingLine.x3 ? (draggingLine.line.x2) + draggingLine.dx : (draggingLine.line.x2) - draggingLine.dx;
+	newLine.y2 = draggingLine.y > draggingLine.y3 ? (draggingLine.line.y2) + draggingLine.dy : (draggingLine.line.y2) - draggingLine.dy;
+	removeLineFromArray(draggingLine.line);
+	({ x, y } = treatOutofCanvas(newLine.x1, newLine.y1))
+	newLine.x1 = x;
+	newLine.y1 = y;
+	({ x, y } = treatOutofCanvas(newLine.x2, newLine.y2))
+	newLine.x2 = x;
+	newLine.y2 = y;
+	lines.push(newLine)
+	refreshCanvas(drawAllPreviousLines)
+	drawLine(newLine)
+	draggingLine.line = newLine;
+  }
 
   function onMouseUp(evt) {
 	if(draggingCorner.isDragging){
@@ -174,6 +244,12 @@ function areCoordinatesClose(a,b, x,y){
 		lineColor = 'black';
 		
 		draggingCorner.line = null;
+	}
+	else if (draggingLine.isDragging){
+		console.log(' I\'ve  stopped moving the line and the distance is dx ', draggingLine.dx, ' dy ', draggingLine.dy)
+		draggingLine.isDragging = false;
+		lineMovement();
+		draggingLine.line = null;
 	}
   }
 
@@ -197,17 +273,18 @@ function areCoordinatesClose(a,b, x,y){
 	canvas.addEventListener("mousedown", onMouseDown);
 
 	lines = []
-	refreshCanvas(addOneLine({
+
+	lines.push({
 		x1: 50,
 		y1: 50,
 		x2: canvas.width-100,
 		y2: canvas.height-50
-	}))
+	})
+	refreshCanvas(addOneLine)
   }
 
-  function addOneLine(line){
-	lines.push(line)
-	drawLine(line);
+  function addOneLine(){
+	drawLine(lines[0]);
   }
 
   function drawAllPreviousLines(){

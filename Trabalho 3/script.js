@@ -179,8 +179,6 @@ function areCoordinatesOnLine(a,b, line){
 		return TYPES.MIDDLE;
 	}
   }
-
-
   
   function onMouseDown(evt) {
 	
@@ -222,12 +220,12 @@ function areCoordinatesOnLine(a,b, line){
 	const newLine1 = {
 		x1: oldLine.x1,
 		y1: oldLine.y1,
-		x2: x,
-		y2: y
+		x2: x-1,
+		y2: y-1
 	}
 	const newLine2 = {
-		x1: x,
-		y1: y,
+		x1: x+1,
+		y1: y+1,
 		x2: oldLine.x2,
 		y2: oldLine.y2
 	}
@@ -333,15 +331,57 @@ function areCoordinatesOnLine(a,b, line){
 	evt.preventDefault();
   }
 
+  function generatePolygon(){
+	let sides;
+	const sidesText = document.getElementById("sides-input").value;
+	sides = parseInt(sidesText)
+
+	if(!sides || (sides < 3 || sides > 8)){
+		alert('Por favor digite um número de lados de 3 à 8');
+		return;
+	}
+
+	refreshCanvas(() => lines = [])
+
+	const dX = (canvas.width/8) * 2;
+	const dY = (canvas.height/8) * 2;
+
+	let pA = {x1: dX, y1: dY}
+	let pB = {x2: 0, y2:0}
+	for(let i =0; i < (sides % 2 == 1 ? (sides-1)/2 : sides/2); i++){
+		if(i>0){
+			pA.x1 = pB.x2; pA.y1 = pB.y2;
+		}
+		pB = {x2 : dX * (i+2), y2: dY * (i)};
+		lines.push({...pA, ...pB})
+		drawLine({...pA, ...pB});
+	}
+
+	for(let i =0; i < (sides)/2; i++){
+		pA.x1 = pB.x2; pA.y1 = pB.y2;
+		pB = {x2 : dX * (i), y2: dY * (i+2)};
+		lines.push({...pA, ...pB})
+		drawLine({...pA, ...pB});
+	}
+
+	lines.push({x1: lines[0].x1, y1: lines[0].y1, x2: lines[sides-1].x2, y2: lines[sides-1].x2 })
+	drawLine({x1: lines[0].x1, y1: lines[0].y1, x2: lines[sides-1].x2, y2: lines[sides-1].x2 });
+
+  }
+
   function init(){
 	canvas = document.getElementById('canvas');
 	ctx = canvas.getContext('2d');
 
 	const refreshButtonC = document.getElementById("refresh-button-clear");
-	refreshButtonC.addEventListener("click", () => refreshCanvas(() => console.log('Refreshing screen with nothing')));
+	refreshButtonC.addEventListener("click", () => refreshCanvas(() => lines=[]));
 
 	const refreshButton = document.getElementById("refresh-button-one-line");
 	refreshButton.addEventListener("click", () => refreshCanvas(addOneLine));
+
+	const polygonGenerate = document.getElementById("polygon-generate");
+	polygonGenerate.addEventListener("click", () => generatePolygon());
+
 
 	canvas.addEventListener("mouseup", onMouseUp);
 	canvas.addEventListener("mousemove", onMouseMove);

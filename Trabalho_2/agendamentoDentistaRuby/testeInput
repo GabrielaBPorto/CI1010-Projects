@@ -27,10 +27,6 @@ editar recurso Algodao,58.00,Aparelho
 
 remover recurso Seringa
 
-termino
-
-
-
 inserir dentistas Denise,90.00,(41)99568-8791
 inserir dentistas Paulo,190.00,(41)99568-8791
 inserir dentistas Denise2,90.00,(41)99568-8791
@@ -40,3 +36,6 @@ editar dentistas Denise,150.00,(41)99787-8283
 remover dentistas Denise2
 
 inserir agendamento 03/01/2020,09:30:00,
+
+
+termino

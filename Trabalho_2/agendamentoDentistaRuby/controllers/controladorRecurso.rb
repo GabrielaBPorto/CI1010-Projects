@@ -1,5 +1,5 @@
-require_relative './classes/procedimento.rb'
-require_relative './classes/recurso.rb'
+require_relative '../classes/procedimento.rb'
+require_relative '../classes/recurso.rb'
 
 def imprimeInformacaoRecurso(acao,recurso,procedimento='')
     print " Foi #{acao} recurso com nome #{recurso.nome} com custo #{recurso.custo}"

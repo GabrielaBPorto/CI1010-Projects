@@ -1,4 +1,4 @@
-require_relative './classes/paciente.rb'
+require_relative '../classes/paciente.rb'
 
 def imprimeInformacaoPaciente(acao,paciente)
     puts " Foi #{acao} paciente com nome #{paciente.nome} #{paciente.sobrenome} com telefone #{paciente.telefone}"

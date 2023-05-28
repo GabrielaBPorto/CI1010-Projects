@@ -5,7 +5,7 @@ ActiveRecord::Base.establish_connection(
   database: "Tabelas.sqlite3"
 )
 
-class Dentistas < ActiveRecord::Base
+class Dentista < ActiveRecord::Base
   has_and_belongs_to_many :procedimentos, -> { uniq }
   belongs_to :agendamento
 end

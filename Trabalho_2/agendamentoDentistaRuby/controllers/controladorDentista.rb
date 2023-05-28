@@ -5,7 +5,7 @@ def imprimeInformacaoDentista(acao,dentista)
 end
 def criarDentista(dados)
     nome, custo_por_procedimento, telefone = dados.split(',')
-    dentista = Dentistas.find_by_nome(nome)
+    dentista = Dentista.find_by_nome(nome)
     if(dentista)
         puts "dentista já cadastrado"
         return
@@ -13,7 +13,7 @@ def criarDentista(dados)
     if(!telefone)
         telefone = '(41)99999-9999'
     end
-    dentista = Dentistas.new({:nome => nome,
+    dentista = Dentista.new({:nome => nome,
         :custo_por_procedimento => custo_por_procedimento.to_f,
         :telefone => telefone})
     dentista.save
@@ -21,7 +21,7 @@ def criarDentista(dados)
 end
 def editarDentista(dados)
     nome, custo_por_procedimento, telefone = dados.split(',')
-    dentista = Dentistas.find_by_nome(nome)
+    dentista = Dentista.find_by_nome(nome)
     if(!dentista)
         puts "O dentista com esse nome não existe"
         return
@@ -33,7 +33,7 @@ def editarDentista(dados)
 end
 def removerDentista(dados)
     nome = dados.split(',')
-    dentista = Dentistas.find_by_nome(nome)
+    dentista = Dentista.find_by_nome(nome)
     if(!dentista)
         puts "O dentista com esse nome não existe"
         return

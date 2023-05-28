@@ -1,4 +1,4 @@
-require_relative '../classes/procedimento.rb'
+require_relative './classes/procedimento.rb'
 
 def imprimeInformacaoProcedimento(acao,procedimento)
     puts " Foi #{acao} procedimento com nome #{procedimento.nome} com o total de etapas #{procedimento.total_etapas}"

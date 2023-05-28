@@ -7,6 +7,6 @@ ActiveRecord::Base.establish_connection(
 
 class Procedimento < ActiveRecord::Base
   has_many :recursos
-  # has_and_belongs_to_many :dentistas
-  # belongs_to :agendamento
+  has_and_belongs_to_many :dentistas
+  belongs_to :agendamento
 end

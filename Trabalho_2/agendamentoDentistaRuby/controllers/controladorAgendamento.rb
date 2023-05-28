@@ -1,4 +1,5 @@
-require './classes/agendamento.rb'
+require_relative '../classes/agendamento.rb'
+
 
 require 'date'
 

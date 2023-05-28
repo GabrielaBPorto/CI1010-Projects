@@ -1,4 +1,4 @@
-require '../classes/dentista.rb'
+require_relative '../classes/dentista.rb'
 
 def imprimeInformacaoDentista(acao,dentista)
     puts " Foi #{acao} dentista com nome #{dentista.nome} e cobra #{dentista.custo_por_procedimento} por procedimento feito e o telefone para contato é #{dentista.telefone}"

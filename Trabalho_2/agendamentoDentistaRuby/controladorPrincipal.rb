@@ -1,10 +1,9 @@
 #!/usr/bin/env ruby
-require './controllers/controladorPaciente.rb'
-require './controllers/controladorRecurso.rb'
-require './controllers/controladorProcedimento.rb'
-require './controllers/controladorAgendamento.rb'
-require './controllers/controladorDentista.rb'
-
+require_relative '../controllers/controladorPaciente.rb'
+require_relative '../controllers/controladorRecurso.rb'
+require_relative '../controllers/controladorProcedimento.rb'
+require_relative '../controllers/controladorAgendamento.rb'
+require_relative '../controllers/controladorDentista.rb'
 
 require 'date'
 

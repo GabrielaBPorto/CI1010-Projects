@@ -27,7 +27,7 @@ while(!input.index('termino'))
         if(tabela.index('agendamento'))
             criarAgendamento(dados)
         end
-        if(tabela.index('dentista'))
+        if(tabela.index('dentistas'))
             criarDentista(dados)
         end
     end
@@ -44,7 +44,7 @@ while(!input.index('termino'))
         if(tabela.index('agendamento'))
             editarAgendamento(dados)
         end
-        if(tabela.index('dentista'))
+        if(tabela.index('dentistas'))
             editarDentista(dados)
         end
     end
@@ -61,7 +61,7 @@ while(!input.index('termino'))
         if(tabela.index('agendamento'))
             removerAgendamento(dados)
         end
-        if(tabela.index('dentista'))
+        if(tabela.index('dentistas'))
             removerDentista(dados)
         end
     end

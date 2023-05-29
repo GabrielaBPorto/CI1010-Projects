@@ -52,8 +52,7 @@ def listarProcedimento
 
     procedimentos.each do |procedimento|
         puts "|**********************************************************************************************|"
-        puts "|--Procedimento: #{procedimento.nome} -------------------------------|"
-        puts "|--exige pelo menos #{procedimento.total_etapas}--------------------------------------------------------------|"
+        puts "|--Procedimento: #{procedimento.nome} exige pelo menos #{procedimento.total_etapas} consultas------------------------------------|"
         puts "|**********************************************************************************************|"
       end
 

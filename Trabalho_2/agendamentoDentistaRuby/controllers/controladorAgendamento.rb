@@ -27,7 +27,7 @@ def criarAgendamento(dados)
         puts "O nome do procedimento não pode ser vazio"
         return
     end
-    if dataAgendamento.nil? || dataAgendamento.strip.empty?
+    if dataAgendamento.nil? || dataAgendamento.strftime.empty?
         puts "A data não pode ser vazia"
         return
     end

@@ -41,3 +41,17 @@ def removerPaciente(dados)
     paciente.destroy
     imprimeInformacaoPaciente('removido',paciente)
 end
+def listarPacientes
+    pacientes = Paciente.all
+  
+    if pacientes.empty?
+      puts "Não há pacientes cadastrados."
+      return
+    end
+  
+    pacientes.each do |paciente|
+      puts "Paciente: #{paciente.nome}"
+      puts "---"
+    end
+  end
+  

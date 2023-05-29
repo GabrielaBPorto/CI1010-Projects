@@ -65,5 +65,22 @@ while(!input.index('termino'))
             removerDentista(dados)
         end
     end
+    if(comando.index('lista'))
+        if(tabela.index('paciente'))
+            removerPaciente(dados)
+        end
+        if(tabela.index('recurso'))
+            removerRecurso(dados)
+        end
+        if(tabela.index('procedimento'))
+            removerProcedimento(dados)
+        end
+        if(tabela.index('agendamento'))
+            removerAgendamento(dados)
+        end
+        if(tabela.index('dentistas'))
+            removerDentista(dados)
+        end
+    end
     input = gets.chomp
 end

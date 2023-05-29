@@ -48,18 +48,13 @@ def listarDentista
       puts "Não há dentistas cadastrados."
       return
     end
-  
-    dentistas.each do |dentista|
-      puts "dentista: #{dentista.nome}"
-      puts "---"
-    end
 
     puts "|--------------------------Dentistas--------------------------------------------------------|"
 
     dentistas.each do |dentista|
       puts "|**********************************************************************************************|"
       puts "|--dentista: #{dentista.nome} seu custo médio por paciente é #{dentista.custo_por_procedimentos}-------------------------------|"
-      puts "|--é possível contata-lo no número #{dentista.telefone}----------------------------------------------------------------------------|"
+      puts "|--é possível contata-lo no número #{dentista.telefone}--------------------------------------------------------------|"
       puts "|**********************************************************************************************|"
     end
   

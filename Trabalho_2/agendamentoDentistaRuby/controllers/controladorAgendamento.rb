@@ -62,7 +62,7 @@ def criarAgendamento(dados)
       return
     end
   
-    agendamento = Agendamento.new(data: dataAgendamento, paciente: paciente, dentista: dentista, procedimento: procedimento)
+    agendamento = Agendamento.new(data: dataAgendamento, paciente: paciente.id, dentista: dentista.id, procedimento: procedimento.id)
     agendamento.save
   
     imprimeInformacaoAgendamento('criado', agendamento)

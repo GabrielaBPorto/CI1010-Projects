@@ -8,6 +8,6 @@ ActiveRecord::Base.establish_connection(
 class Agendamento < ActiveRecord::Base
   self.table_name = 'agendamentos'
   has_one :procedimentos
-  has_one :pacientess
+  has_one :pacientes
   has_many :dentistas
 end

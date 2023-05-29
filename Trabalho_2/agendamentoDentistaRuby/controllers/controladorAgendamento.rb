@@ -37,7 +37,10 @@ def criarAgendamento(dados)
     procedimento = Procedimento.find_by(nome: nome_procedimento)
   
 
-  
+    puts "PAciente #{paciente}"
+    puts "PAciente #{dentista}"
+    puts "PAciente #{procedimento}"
+    
     if paciente.nil?
         puts "O paciente com nome #{nome_paciente} não foi encontrado"
         return

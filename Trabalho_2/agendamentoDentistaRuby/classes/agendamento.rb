@@ -8,6 +8,7 @@ ActiveRecord::Base.establish_connection(
 class Agendamento < ActiveRecord::Base
   self.table_name = 'agendamentos'
   has_one :procedimento
-  has_one :paciente
+  has_one :paciente, foreign_key: 'paciente_id'
   has_many :dentistas
 end
+

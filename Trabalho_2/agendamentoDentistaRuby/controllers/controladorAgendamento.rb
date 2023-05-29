@@ -128,10 +128,10 @@ def listarAgendamentos
   puts "|-------------Agendamentos----------------|"
 
   agendamentos.each do |agendamento|
-    puts "|--*****************************************************************************************---|"
+    puts "|**********************************************************************************************|"
     puts "|--agendamento: #{agendamento.data} para o paciente #{agendamento.paciente.nome}---|"
     puts "|--procedimento #{agendamento.procedimento.nome} com dentista #{agendamento.dentista.nome}}---|"
-    puts "|--*****************************************************************************************---|"
+    puts "|**********************************************************************************************|"
   end
 
   puts "|-----------------------------------------|"

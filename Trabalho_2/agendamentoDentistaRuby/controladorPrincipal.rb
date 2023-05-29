@@ -67,19 +67,19 @@ while(!input.index('termino'))
     end
     if(comando.index('lista'))
         if(tabela.index('paciente'))
-            removerPaciente(dados)
+            listarPacientes(dados)
         end
         if(tabela.index('recurso'))
-            removerRecurso(dados)
+            listarRecurso(dados)
         end
         if(tabela.index('procedimento'))
-            removerProcedimento(dados)
+            listarProcedimento(dados)
         end
         if(tabela.index('agendamento'))
-            removerAgendamento(dados)
+            listarAgendamentos(dados)
         end
         if(tabela.index('dentistas'))
-            removerDentista(dados)
+            listarDentista(dados)
         end
     end
     input = gets.chomp

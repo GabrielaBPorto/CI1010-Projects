@@ -128,7 +128,7 @@ def listarAgendamentos
   puts "|-------------Agendamentos-----------|"
 
   agendamentos.each do |agendamento|
-    puts "agendamento: #{agendamento.data}"
+    puts "|--agendamento: #{agendamento.data}--|"
     puts "|"
   end
 

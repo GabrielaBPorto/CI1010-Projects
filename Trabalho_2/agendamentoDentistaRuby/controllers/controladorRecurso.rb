@@ -69,14 +69,14 @@ def listarRecurso
     recursos.each do |recurso|
         puts "|                                                                                              |"
         puts "|  Recurso: #{recurso.nome} seu custo é: #{recurso.custo}                               |"
-        procedimento = recurso.procedimento
-    if procedimento
-      puts "|  Pertence ao procedimento: #{procedimento.nome}                                           |"
-    else
-      puts "|  Não pertence a nenhum procedimento                                                        |"
+        procedimento = Procedimento.find_by_id(recurso.procedimentos_id)
+        if procedimento
+        puts "|  Pertence ao procedimento: #{procedimento.nome}                                           |"
+        else
+        puts "|  Não pertence a nenhum procedimento                                                        |"
+        end
+        puts "|                                                                                              |"
     end
-    puts "|                                                                                              |"
-  end
 
       puts "|----------------------------------------------------------------------------------------------|"
   end

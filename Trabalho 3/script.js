@@ -343,6 +343,7 @@ function areCoordinatesClose(a,b, x,y){
 	const sidesText = document.getElementById("sides-input").value;
 	let sides = parseInt(sidesText)
 
+
 	if(!sides || (sides < 3 || sides > 8)){
 		alert('Por favor digite um número de lados de 3 à 8');
 		return;
@@ -362,6 +363,7 @@ function areCoordinatesClose(a,b, x,y){
 		pB = { x2: dX * (i + 1), y2: dY * (i + 1) };
 		lines.push({ ...pA, ...pB });
 		drawLine({ ...pA, ...pB });
+		console.log('the sides are i:',i,'with', lines[0])
 	  }
   
 	  lines.push({ x1: pB.x2, y1: pB.y2, x2: dX, y2: dY });

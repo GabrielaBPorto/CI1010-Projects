@@ -6,6 +6,7 @@ ActiveRecord::Base.establish_connection(
 )
 
 class Dentista < ActiveRecord::Base
+  self.table_name = 'dentista'
   has_and_belongs_to_many :procedimentos, -> { uniq }
-  belongs_to :agendamento
+  belongs_to :agendamentos
 end

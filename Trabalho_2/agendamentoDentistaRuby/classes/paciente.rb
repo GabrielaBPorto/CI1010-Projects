@@ -6,5 +6,5 @@ ActiveRecord::Base.establish_connection(
 )
 
 class Paciente < ActiveRecord::Base
-  belongs_to :agendamentos
+  belongs_to :agendamento
 end

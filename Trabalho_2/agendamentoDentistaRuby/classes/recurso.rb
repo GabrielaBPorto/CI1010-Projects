@@ -6,5 +6,5 @@ ActiveRecord::Base.establish_connection(
 )
 
 class Recurso < ActiveRecord::Base
-  belongs_to :procedimentos
+  belongs_to :procedimento
 end

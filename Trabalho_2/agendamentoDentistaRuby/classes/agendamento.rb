@@ -9,5 +9,5 @@ class Agendamento < ActiveRecord::Base
   self.table_name = 'agendamentos'
   has_one :procedimento
   has_one :paciente
-  has_many :dentista
+  has_many :dentistas
 end

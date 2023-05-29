@@ -49,15 +49,15 @@ def listarDentista
       return
     end
 
-    puts "|--------------------------Dentistas--------------------------------------------------------|"
+    puts "|                          Dentistas                                                        |"
 
     dentistas.each do |dentista|
       puts "|**********************************************************************************************|"
-      puts "|--dentista: #{dentista.nome} seu custo médio por paciente é #{dentista.custo_por_procedimentos}-------------------------------|"
-      puts "|--é possível contata-lo no número #{dentista.telefone}--------------------------------------------------------------|"
+      puts "|  dentista: #{dentista.nome} seu custo médio por paciente é #{dentista.custo_por_procedimentos}                               |"
+      puts "|  é possível contata lo no número #{dentista.telefone}                                                              |"
       puts "|**********************************************************************************************|"
     end
   
-    puts "|----------------------------------------------------------------------------------------------|"
+    puts "|                                                                                              |"
   end
   

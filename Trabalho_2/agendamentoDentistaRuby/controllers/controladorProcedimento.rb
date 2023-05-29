@@ -48,14 +48,14 @@ def listarProcedimento
       return
     end
   
-    puts "|--------------------------Procedimentos--------------------------------------------------------|"
+    puts "|                          Procedimentos                                                        |"
 
     procedimentos.each do |procedimento|
         puts "|**********************************************************************************************|"
-        puts "|--Procedimento: #{procedimento.nome} exige pelo menos #{procedimento.total_etapas} consultas------------------------------------|"
+        puts "|  Procedimento: #{procedimento.nome} exige pelo menos #{procedimento.total_etapas} consultas                                    |"
         puts "|**********************************************************************************************|"
       end
 
-      puts "|----------------------------------------------------------------------------------------------|"
+      puts "|                                                                                              |"
   end
   

@@ -64,15 +64,15 @@ def listarRecurso
       return
     end
   
-    puts "|--------------------------Recursos-----------------------------------------------------------|"
+    puts "|                          Recursos                                                           |"
 
     recursos.each do |recurso|
         puts "|**********************************************************************************************|"
-        puts "|--Recurso: #{recurso.nome} seu custo é: #{recurso.custo}-------------------------------|"
-        puts "|--Pertence a #{recurso.procedimentos}--------------------------------------------------------------|"
+        puts "|  Recurso: #{recurso.nome} seu custo é: #{recurso.custo}                               |"
+        puts "|  Pertence a #{recurso.procedimentos}                                                              |"
         puts "|**********************************************************************************************|"
       end
 
-      puts "|----------------------------------------------------------------------------------------------|"
+      puts "|                                                                                              |"
   end
   

@@ -49,6 +49,7 @@ def listarDentista
       return
     end
 
+    puts "|----------------------------------------------------------------------------------------------|"
     puts "|                          Dentistas                                                        |"
 
     dentistas.each do |dentista|

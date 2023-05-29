@@ -49,6 +49,7 @@ def listarPacientes
       return
     end
 
+    puts "|----------------------------------------------------------------------------------------------|"
     puts "|                          Pacientes                                                           |"
 
     pacientes.each do |paciente|

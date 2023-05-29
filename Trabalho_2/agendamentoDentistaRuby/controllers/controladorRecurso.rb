@@ -63,13 +63,13 @@ def listarRecurso
       puts "Não há recursos cadastrados."
       return
     end
-  
+    puts "|----------------------------------------------------------------------------------------------|"
     puts "|                          Recursos                                                           |"
 
     recursos.each do |recurso|
         puts "|                                                                                              |"
         puts "|  Recurso: #{recurso.nome} seu custo é: #{recurso.custo}                               |"
-        puts "|  Pertence a #{recurso.procedimentos}                                                              |"
+        puts "|  Pertence a #{recurso.procedimento}                                                              |"
         puts "|                                                                                              |"
       end
 

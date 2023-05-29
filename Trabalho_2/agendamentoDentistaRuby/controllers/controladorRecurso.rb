@@ -70,7 +70,12 @@ def listarRecurso
         puts "|                                                                                              |"
         puts "|  Recurso: #{recurso.nome} seu custo é: #{recurso.custo}                               |"
         procedimento = recurso.procedimentos
-        puts "|  Pertence a #{procedimento}                                                              |"
+        if procedimento
+            puts "|  Pertence a #{procedimento.nome}                                                              |"
+        else
+            puts "|  Pertence a nenhum procedimento                                                          |"
+        end
+        # puts "|  Pertence a #{procedimento}                                                              |"
         puts "|                                                                                              |"
       end
 

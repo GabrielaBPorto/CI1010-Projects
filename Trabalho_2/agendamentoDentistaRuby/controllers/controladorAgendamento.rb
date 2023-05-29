@@ -117,3 +117,16 @@ def removerAgendamento(dados)
 
   imprimeInformacaoAgendamento('removido', agendamento)
 end
+def listarAgendamentos
+  agendamentos = Agendamento.all
+
+  if agendamentos.empty?
+    puts "Não há agendamentos cadastrados."
+    return
+  end
+
+  agendamentos.each do |agendamento|
+    puts "agendamento: #{agendamento.nome}"
+    puts "---"
+  end
+end

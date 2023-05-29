@@ -56,3 +56,17 @@ def removerRecurso(dados)
     recurso.destroy
     imprimeInformacaoRecurso('removido',recurso)
 end
+def listarRecurso
+    recursos = Recurso.all
+  
+    if recursos.empty?
+      puts "Não há recursos cadastrados."
+      return
+    end
+  
+    recursos.each do |recurso|
+      puts "recurso: #{recurso.nome}"
+      puts "---"
+    end
+  end
+  

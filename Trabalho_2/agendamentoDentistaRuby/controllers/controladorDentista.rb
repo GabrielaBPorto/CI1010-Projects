@@ -41,3 +41,17 @@ def removerDentista(dados)
     dentista.destroy
     imprimeInformacaoDentista('removido',dentista)
 end
+def listarDentista
+    dentistas = Dentista.all
+  
+    if dentistas.empty?
+      puts "Não há dentistas cadastrados."
+      return
+    end
+  
+    dentistas.each do |dentista|
+      puts "dentista: #{dentista.nome}"
+      puts "---"
+    end
+  end
+  

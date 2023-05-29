@@ -39,3 +39,18 @@ def removerProcedimento(dados)
     procedimento.destroy
     imprimeInformacaoProcedimento('removido',procedimento)
 end
+
+def listarProcedimento
+    procedimentos = Procedimento.all
+  
+    if procedimentos.empty?
+      puts "Não há procedimentos cadastrados."
+      return
+    end
+  
+    procedimentos.each do |procedimento|
+      puts "procedimento: #{procedimento.nome}"
+      puts "---"
+    end
+  end
+  

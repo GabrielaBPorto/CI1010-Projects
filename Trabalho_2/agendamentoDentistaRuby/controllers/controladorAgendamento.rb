@@ -129,6 +129,7 @@ def listarAgendamentos
 
   agendamentos.each do |agendamento|
     puts "|--agendamento: #{agendamento.data} para o paciente #{agendamento.paciente.nome}---|"
+    puts "|--procedimento #{agendamento.procedimento.nome} com dentista #{agendamento.dentista.nome}}---|"
   end
 
   puts "|-----------------------------------------|"

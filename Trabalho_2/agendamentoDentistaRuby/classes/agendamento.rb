@@ -7,6 +7,6 @@ ActiveRecord::Base.establish_connection(
 class Agendamento < ActiveRecord::Base
   self.table_name = 'agendamentos'
   belongs_to :paciente
-  belongs_to :dentista
-  has_one :procedimento
+  belongs_to :procedimento
+  has_and_belongs_to_many :dentistas
 end

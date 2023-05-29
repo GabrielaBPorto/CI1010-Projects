@@ -1,9 +1,9 @@
 inserir paciente Gabriela,Porto,(41)995079848
-inserir paciente Marcella,Wandry
+inserir paciente Rodolfo,Flors
 
-editar paciente Marcella,Wandrey,(41)999363679
+editar paciente Rodolfo,Flores,(41)999363679
 
-remover paciente Marcella,
+remover paciente Rodolfo,
 
 
 inserir procedimento LimpezaDental,1
@@ -22,7 +22,6 @@ inserir recurso Mascara,4.00,Siso
 inserir recurso Luva,46.00,LimpezaDental
 inserir recurso Babador,13.50,Aparelho
 
-
 editar recurso Algodao,58.00,Aparelho
 
 remover recurso Seringa
@@ -35,8 +34,8 @@ editar dentistas Denise,150.00,(41)99787-8283
 
 remover dentistas Denise2
 
-inserir agendamento 03/01/2020,09:30:00,
-inserir agendamento 03/01/2020,09:30:00,
-inserir agendamento 04/01/2020,09:30:00,
+inserir agendamento 03/01/2020,09:30:00,Gabriela,Denise,LimpezaDental
+inserir agendamento 03/01/2020,09:30:00,Rodolfo,Paulo,LimpezaDental
+inserir agendamento 04/01/2020,09:30:00,Rodolfo,Denise,LimpezaDental
 
 termino

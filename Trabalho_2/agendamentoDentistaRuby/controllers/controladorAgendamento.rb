@@ -38,6 +38,10 @@ def criarAgendamento(dados)
   
 
   
+    if paciente.nil?
+        puts "O paciente com nome #{nome_paciente} não foi encontrado"
+        return
+      end
     if dentista.nil?
       puts "O dentista com nome #{nome_dentista} não foi encontrado"
       return

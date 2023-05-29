@@ -129,7 +129,6 @@ def listarAgendamentos
 
   agendamentos.each do |agendamento|
     puts "|--agendamento: #{agendamento.data}--|"
-    puts "|"
   end
 
   puts "|-----------------------------------------|"

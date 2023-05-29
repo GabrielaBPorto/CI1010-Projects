@@ -52,10 +52,10 @@ def listarDentista
     puts "|                          Dentistas                                                        |"
 
     dentistas.each do |dentista|
-      puts "|**********************************************************************************************|"
+      puts "|                                                                                              |"
       puts "|  dentista: #{dentista.nome} seu custo médio por paciente é #{dentista.custo_por_procedimentos}                               |"
       puts "|  é possível contata lo no número #{dentista.telefone}                                                              |"
-      puts "|**********************************************************************************************|"
+      puts "|                                                                                              |"
     end
   
     puts "|                                                                                              |"

@@ -52,10 +52,10 @@ def listarPacientes
     puts "|                          Pacientes                                                        |"
 
     pacientes.each do |paciente|
-      puts "|**********************************************************************************************|"
+      puts "|                                                                                              |"
       puts "|  Paciente: #{paciente.nome} #{paciente.sobrenome}                               |"
       puts "|  é possível contata-lo no número #{paciente.telefone}                                                              |"
-      puts "|**********************************************************************************************|"
+      puts "|                                                                                              |"
     end
   
     puts "|                                                                                              |"

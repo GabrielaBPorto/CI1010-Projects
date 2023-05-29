@@ -67,10 +67,10 @@ def listarRecurso
     puts "|                          Recursos                                                           |"
 
     recursos.each do |recurso|
-        puts "|**********************************************************************************************|"
+        puts "|                                                                                              |"
         puts "|  Recurso: #{recurso.nome} seu custo é: #{recurso.custo}                               |"
         puts "|  Pertence a #{recurso.procedimentos}                                                              |"
-        puts "|**********************************************************************************************|"
+        puts "|                                                                                              |"
       end
 
       puts "|                                                                                              |"

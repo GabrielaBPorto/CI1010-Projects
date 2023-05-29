@@ -51,9 +51,9 @@ def listarProcedimento
     puts "|                          Procedimentos                                                        |"
 
     procedimentos.each do |procedimento|
-        puts "|**********************************************************************************************|"
+        puts "|                                                                                              |"
         puts "|  Procedimento: #{procedimento.nome} exige pelo menos #{procedimento.total_etapas} consultas                                    |"
-        puts "|**********************************************************************************************|"
+        puts "|                                                                                              |"
       end
 
       puts "|                                                                                              |"

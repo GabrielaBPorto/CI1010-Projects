@@ -35,11 +35,15 @@ editar dentistas Denise,150.00,(41)99787-8283
 remover dentistas Denise2
 
 inserir agendamento 03/01/2020,09:30:00,Gabriela,Denise,LimpezaDental
-inserir agendamento 03/01/2020,09:30:00,Rodolfo,Paulo,LimpezaDental
-inserir agendamento 04/01/2020,09:30:00,Rodolfo,Denise,LimpezaDental
 
 lista procedimento
 lista agendamento
 lista dentistas
 lista paciente
+
+termino
+
+inserir agendamento 03/01/2020,09:30:00,Rodolfo,Paulo,LimpezaDental
+inserir agendamento 04/01/2020,09:30:00,Rodolfo,Denise,LimpezaDental
+
 termino

@@ -14,15 +14,29 @@ end
 def criarAgendamento(dados)
     data, hora, nome_paciente, nome_dentista, nome_procedimento = dados.split(',')
     dataAgendamento = formataData(data, hora)
-  
+
+    if nome_paciente.empty?
+        puts "O nome do paciente não pode ser vazio"
+        return
+    end
+    if nome_dentista.empty?
+        puts "O nome do dentista não pode ser vazio"
+        return
+    end
+    if nome_procedimento.empty?
+        puts "O nome do procedimento não pode ser vazio"
+        return
+    end
+    if dataAgendamento.empty?
+        puts "A data não pode ser vazia"
+        return
+    end
+
     paciente = Paciente.find_by(nome: nome_paciente)
     dentista = Dentista.find_by(nome: nome_dentista)
     procedimento = Procedimento.find_by(nome: nome_procedimento)
   
-    if paciente.nil?
-      puts "O paciente com nome #{nome_paciente} não foi encontrado"
-      return
-    end
+
   
     if dentista.nil?
       puts "O dentista com nome #{nome_dentista} não foi encontrado"

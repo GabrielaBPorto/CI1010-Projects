@@ -71,9 +71,9 @@ def listarRecurso
         puts "|  Recurso: #{recurso.nome} seu custo é: #{recurso.custo}                               |"
         procedimento = Procedimento.find_by_id(recurso.procedimentos_id)
         if procedimento
-        puts "|  Pertence ao procedimento: #{procedimento.nome}                                           |"
+        puts "|  Pertence ao procedimento: #{procedimento.nome}                                                                   |"
         else
-        puts "|  Não pertence a nenhum procedimento                                                        |"
+        puts "|  Não pertence a nenhum procedimento                                                                             |"
         end
         puts "|                                                                                              |"
     end

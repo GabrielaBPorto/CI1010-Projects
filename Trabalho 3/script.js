@@ -53,14 +53,26 @@ function treatOutofCanvas(x, y){
 }
 
 function drawLine({x1, y1, x2, y2}) {
-	console.log(`desenhando uma linha (${x1}, ${y1}) ->(${x2}, ${y2})`)
 	ctx.beginPath();
 	ctx.moveTo(x1, y1);
 	ctx.lineTo(x2, y2);
 	ctx.lineWidth = LINE_WIDTH;
 	ctx.strokeStyle = lineColor;
 	ctx.stroke();
+	drawCapturingPoints(x1, y1);
+	drawCapturingPoints(x2, y2);
 }
+
+function drawCapturingPoints(x, y) {
+	const radius = 4;
+	ctx.beginPath();
+	ctx.arc(x, y, radius, 0, Math.PI * 2);
+	ctx.fillStyle = "white";
+	ctx.strokeStyle = "green";
+	ctx.lineWidth = 2;
+	ctx.fill();
+	ctx.stroke();
+  }
 
 function removeLineFromArray({x1, y1, x2, y2}) {
 	lines = lines.filter(line => {
@@ -108,7 +120,7 @@ function calculateDistanceToLine(mouseX, mouseY, x1, y1, x2, y2) {
 }
 
 function areCoordinatesClose(a,b, x,y){
-	const threshold = 50;
+	const threshold = 10;
 	const dx = Math.abs(a-x);
 	const dy = Math.abs(b-y);
 	return dx < threshold && dy <threshold;
@@ -136,7 +148,6 @@ function areCoordinatesClose(a,b, x,y){
   
 	const dot = A * C + B * D;
 	const lenSq = C * C + D * D;
-	console.log('lenSeq ', lenSq, 'dot', dot)
 	let param = -1;
   
 	if (lenSq !== 0) {
@@ -146,15 +157,12 @@ function areCoordinatesClose(a,b, x,y){
 	let xx, yy;
   
 	if (param < 0) {
-		console.log('oi')
 	  xx = x1;
 	  yy = y1;
 	} else if (param > 1) {
-		console.log('oi2')
 	  xx = x2;
 	  yy = y2;
 	} else {
-		console.log('oi3')
 	  xx = x1 + param * C;
 	  yy = y1 + param * D;
 	}
@@ -176,6 +184,7 @@ function areCoordinatesClose(a,b, x,y){
   }
     
   function isMouseOnLine({x, y}, line) {
+
 	if(areCoordinatesClose(line.x1, line.y1, x, y)){
 		return TYPES.START;
 	}
@@ -190,38 +199,48 @@ function areCoordinatesClose(a,b, x,y){
   
   function onMouseDown(evt) {
 	
-	console.log('mousedown', evt.button)
 	const mousePos = getMousePos(evt)
-	for(const line of lines){
-		if(evt.button === 0){
-			const closeTo = isMouseOnLine(mousePos, line);
-			//Realiza a movimentação das pontas
-			if(closeTo && (isCloseToType(closeTo, TYPES.START) || isCloseToType(closeTo, TYPES.END))){
-				if(!draggingCorner.isDragging){
-					console.log('draggingCorner')
-					draggingCorner.isDragging = true;
-					draggingCorner.line = line;
-					draggingCorner.cornerPosition = closeTo;
-				}
-			}
-			//Realiza a movimentação da linha
-			else if(closeTo == 0 && (isCloseToType(closeTo, TYPES.MIDDLE))){
-				if(!draggingLine.isDragging){
-					console.log('draggingLine')
-					draggingLine.isDragging = true;
-					draggingLine.line = line;
-					draggingLine.x3 = (line.x1 + line.x2) / 2;
-					draggingLine.y3 = (line.y1 + line.y2) / 2;
-				}
+	let closestLine = null;
+	let minDistance = Infinity;
+
+	for (const line of lines) {
+		const { distance } = getDistanceFromLine(mousePos, line);
+		if (distance < minDistance) {
+		closestLine = line;
+		minDistance = distance;
+		}
+	}
+
+	if (closestLine) {
+
+	if(evt.button === 0){
+		const closeTo = isMouseOnLine(mousePos, closestLine);
+		//Realiza a movimentação das pontas
+		if(closeTo && (isCloseToType(closeTo, TYPES.START) || isCloseToType(closeTo, TYPES.END))){
+			if(!draggingCorner.isDragging){
+				draggingCorner.isDragging = true;
+				draggingCorner.line = closestLine;
+				draggingCorner.cornerPosition = closeTo;
 			}
 		}
-		else if ( evt.button === 2){
-			const { closestX, closestY, closeEnough} = areCoordinatesOnLine(mousePos.x,mousePos.y, line);
-			if(closeEnough){
-				breakLine({x:closestX, y:closestY, oldLine: line});
+		//Realiza a movimentação da linha
+		else if(closeTo == 0 && (isCloseToType(closeTo, TYPES.MIDDLE))){
+			if(!draggingLine.isDragging){
+				draggingLine.isDragging = true;
+				draggingLine.line = closestLine;
+				draggingLine.x3 = (closestLine.x1 + closestLine.x2) / 2;
+				draggingLine.y3 = (closestLine.y1 + closestLine.y2) / 2;
 			}
 		}
 	}
+	else if ( evt.button === 2){
+		const { closestX, closestY, closeEnough} = areCoordinatesOnLine(mousePos.x,mousePos.y, closestLine);
+		if(closeEnough){
+			breakLine({x:closestX, y:closestY, oldLine: closestLine});
+		}
+	}
+}
+	
   }
 
   function breakLine({x,y, oldLine}){
@@ -323,7 +342,6 @@ function areCoordinatesClose(a,b, x,y){
 		draggingCorner.line = null;
 	}
 	else if (draggingLine.isDragging){
-		console.log(' I\'ve  stopped moving the line and the distance is dx ', draggingLine.dx, ' dy ', draggingLine.dy)
 		draggingLine.isDragging = false;
 		lineMovement();
 		draggingLine.line = null;
@@ -350,24 +368,19 @@ function areCoordinatesClose(a,b, x,y){
 	}
 	lines = []
 
-	const dX = canvas.width / (sides + 1);
-    const dY = canvas.height / (sides + 1);
-
-	let pA = { x1: dX * (sides / 2), y1: dY * (sides / 2) };
-    let pB = { x2: 0, y2: 0 };
-	for (let i = 0; i < sides; i++) {
-		if (i > 0) {
-		  pA.x1 = pB.x2;
-		  pA.y1 = pB.y2;
-		}
-		pB = { x2: dX * (i + 1), y2: dY * (i + 1) };
-		lines.push({ ...pA, ...pB });
-		drawLine({ ...pA, ...pB });
-		console.log('the sides are i:',i,'with', lines[0])
-	  }
-  
-	  lines.push({ x1: pB.x2, y1: pB.y2, x2: dX, y2: dY });
-	  drawLine({ x1: pB.x2, y1: pB.y2, x2: dX, y2: dY });
+	var coordinates = [];
+	const centerX = 250;
+	const centerY = 250;
+  	var angle = (sides - 2) * 180 / sides;
+	var radius = Math.min(centerX, centerY);
+	for (var i = 0; i < sides; i++) {
+		var x1 = centerX + radius * Math.cos(Math.PI * 2 * i / sides);
+		var y1 = centerY + radius * Math.sin(Math.PI * 2 * i / sides);
+		var x2 = centerX + radius * Math.cos(Math.PI * 2 * (i + 1) / sides);
+		var y2 = centerY + radius * Math.sin(Math.PI * 2 * (i + 1) / sides);
+		lines.push({ x1, y1, x2, y2 });
+		drawLine(lines[i]);
+  	}
   }
 
   function generatePolygon(){

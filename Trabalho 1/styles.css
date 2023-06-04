@@ -55,7 +55,7 @@ html, body {
 }
 
 .container-fluid {
-    height: 100vh;
+    height: 90vh;
 }
 
 .titulo {
@@ -96,7 +96,7 @@ strong {
     font-weight: bolder;
 }
 
-#conteudo {
+.content  {
     background-color:#e63946;
     opacity: 92%;
     vertical-align: center;
@@ -150,3 +150,34 @@ i {
   ol {
     list-style-type: circle;
   }
+
+
+canvas {
+	border: 1px solid black;
+	border-radius: 20px;
+	transition: opacity 0.5s ease-in-out;
+	background-color: white;
+  }
+  
+  .fade-out {
+	opacity: 0;
+  }
+  
+  .fade-in {
+	opacity: 1;
+  }
+.content button {
+background-color: #9f000f;
+color: white;
+border: none;
+padding: 10px 20px;
+margin-right: 10px;
+}
+
+#sides-input {
+    background-color: #9f000f;
+    color: white;
+    border: none;
+    padding: 5px;
+    margin-right: 10px;
+}

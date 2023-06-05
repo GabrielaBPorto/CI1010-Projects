@@ -1,24 +1,23 @@
-Certainly! Here's a detailed to-do list in Markdown format for finishing this project:
-
-## Project To-Do List
+##To-Do List
 
 ### Setting Up
 - [x] Create a new project folder.
-- [x] Set up the basic file structure (HTML, CSS, JavaScript).
-- [x] Create an HTML template with necessary placeholders.
-- [x] Link CSS and JavaScript files to the HTML template.
-- [x] Verify that the basic setup is working by opening the HTML file in a web browser.
+- [x] Set up the basic file structure (index.html, script.js, style.css).
+- [x] Create a folder named "input" inside the project folder.
+- [x] Place the "alunos.xml.bz2" file inside the "input" folder.
+- [x] Place the "alunos.xsd" file inside the "input" folder.
+- [x] Verify that the basic setup is working by opening the index.html file in a web browser.
 
 ### Data Handling
-- [ ] Create the curriculum data file (curriculum1998.json or curriculum2011.json).
-- [ ] Populate the curriculum data file with the necessary course information.
-- [ ] Create the student data XML file (alunos.xml).
-- [ ] Add fictional student data to the XML file for testing purposes.
+- [x] Extract the "alunos.xml" file from the "alunos.xml.bz2" compressed file.
+- [x] Move the extracted "alunos.xml" file to the "input" folder.
+- [ ] Create a curriculum data file (curriculum1998.json or curriculum2011.json) with the necessary course information.
+- [ ] Place the curriculum data file in the project folder.
 
 ### Fetching Data
-- [ ] Implement the `fetchCurriculumData()` function to load curriculum data from the JSON file.
+- [ ] Implement the `fetchCurriculumData()` function to load curriculum data from the curriculum data file.
 - [ ] Test the `fetchCurriculumData()` function to ensure it retrieves the data correctly.
-- [ ] Implement the `fetchStudentData()` function to parse student data from the XML file.
+- [ ] Implement the `fetchStudentData()` function to parse student data from the "alunos.xml" file.
 - [ ] Test the `fetchStudentData()` function to ensure it retrieves and stores the data properly.
 
 ### Rendering Curriculum Grid
@@ -38,19 +37,13 @@ Certainly! Here's a detailed to-do list in Markdown format for finishing this pr
 - [ ] Style the search container and input field as desired.
 
 ### Testing and Debugging
-- [ ] Test the entire application for bugs and errors.
+- [x] Create a bash script (test.sh) to aid in testing and debugging.
+- [ ] Write test cases in the test.sh script to test various aspects of the application.
+- [ ] Run the test.sh script to verify the functionality of different functions and components.
 - [ ] Debug any issues that arise during testing.
 - [ ] Verify that the application functions correctly and provides the expected behavior.
 
 ### Documentation and Finalization
-- [ ] Add comments to the code for better understanding.
-- [ ] Refactor and optimize the code if necessary.
+- [x] Add comments to the code for better understanding.
+- [x] Refactor and optimize the code if necessary.
 - [ ] Update documentation or README file with project details, features, and usage instructions.
-- [ ] Review the project for any additional improvements or enhancements.
-
-### Deployment
-- [ ] Choose a hosting provider or platform for deploying the application (e.g., GitHub Pages, Heroku, Netlify).
-- [ ] Deploy the project online according to the hosting provider's instructions.
-- [ ] Verify that the deployed application works as expected.
-
-Remember to break down complex tasks into smaller, manageable steps. Feel free to modify or expand the list based on your project's specific requirements.

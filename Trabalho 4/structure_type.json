@@ -1,0 +1,34 @@
+{
+              "ALUNOS_CURSO": {
+                "ALUNO": {
+                  "ID_CURSO_ALUNO": "decimal",
+                  "MATR_ALUNO": "string",
+                  "ID_VERSAO_CURSO": "decimal",
+                  "NOME_ALUNO": "string",
+                  "COD_CURSO": "string",
+                  "NOME_CURSO": "string",
+                  "NUM_VERSAO": "string",
+                  "ID_CURRIC_ALUNO": "string",
+                  "ID_ATIV_CURRIC": "string",
+                  "ANO": "string",
+                  "MEDIA_FINAL": "string",
+                  "SITUACAO_ITEM": "string",
+                  "PERIODO": "string",
+                  "SITUACAO": {},
+                  "COD_ATIV_CURRIC": "string",
+                  "NOME_ATIV_CURRIC": "string",
+                  "CREDITOS": "decimal",
+                  "CH_TOTAL": "decimal",
+                  "ID_LOCAL_DISPENSA": "string",
+                  "CONCEITO": "string",
+                  "ID_NOTA": "decimal",
+                  "ID_ESTRUTURA_CUR": "string",
+                  "DESCR_ESTRUTURA": "string",
+                  "FREQUENCIA": "string",
+                  "MEDIA_CREDITO": "string",
+                  "SITUACAO_CURRICULO": "string",
+                  "SIGLA": "string"
+                }
+              }
+            }
+            

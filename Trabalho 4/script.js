@@ -43,30 +43,55 @@ function convertXmlToJson() {
     const xmlString = event.target.result;
     const parser = new DOMParser();
     const xmlDoc = parser.parseFromString(xmlString, 'text/xml');
+    const json = mountJson(xmlDoc);
+    console.log('json', json);
 
-    const rootElement = xmlDoc.documentElement;
-
-    console.log('all', xmlDoc.all)
-
-    const firstElement = rootElement.getElementsByName('ALUNOS_CURSO');
-    console.log(firstElement.nodeName, firstElement);
-
-    // const elements = schema[0].getElementsByTagName('*')
-    // console.log('schema', schema)
     
-    // for (const element of elements) {
-    //   const name = element.nodeName;
-    //   console.log('name?', name)
-    //   console.log('element', element)
-    //   const value = element.textContent.trim().replace(/\s+/g, ' ');
-    //   console.log('value', value)
-    //   if(value && value.length > 0){
-    //     xmlObject[name] = value;
-    //   }
-    // }
+
+    // const firstElement = xmlDoc.getElementsByName('ALUNOS_CURSO')
+    // // const firstElement = rootElement.getElementsByName('ALUNOS_CURSO');
+    // console.log(firstElement.nodeName, firstElement);
+
   };
 
   reader.readAsText(file);
+};
+
+function mountJson(xml){
+  const rootElement = xml.documentElement;
+  const data = populateData({},rootElement.children);
+  console.log('data', data)
+
+  return data;
+}
+
+
+
+function populateData(object, array){
+  let data = object;
+  let t = {}
+
+  debugger;
+  for (let x=0; x< array.length; x++){
+    const temp = array[x];
+
+    const name = temp.getAttribute("name");
+    console.log('name', name)
+    if(name && name.length > 0){
+      data[name] = {
+        name
+      };
+      t = { name };
+    }
+    console.log(data, 'dataAntes')
+    debugger;
+    data[name] ={...data[name], ...populateData(data, temp.children)}
+    debugger;
+    console.log(data, 'dataDps')
+  }
+
+  debugger;
+  return data;
 }
 
 function xmlToJson(xml) {

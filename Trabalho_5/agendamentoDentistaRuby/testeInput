@@ -1,0 +1,50 @@
+inserir paciente Gabriela,Porto,(41)995079848
+inserir paciente Rodolfo,Flors
+
+editar paciente Rodolfo,Flores,(41)999363679
+
+remover paciente Rodolfo,
+
+
+inserir procedimento LimpezaDental,1
+inserir procedimento Siso,4
+inserir procedimento Aparelho,30
+
+editar procedimento Siso,2
+
+inserir procedimento x,10
+remover procedimento x
+
+
+inserir recurso Algodao,0.56,Siso
+inserir recurso Seringa,0.83,Siso
+inserir recurso Mascara,4.00,Siso
+inserir recurso Luva,46.00,LimpezaDental
+inserir recurso Babador,13.50,Aparelho
+
+editar recurso Algodao,58.00,Aparelho
+
+remover recurso Seringa
+
+inserir dentistas Denise,90.00,(41)99568-8791
+inserir dentistas Paulo,190.00,(41)99568-8791
+inserir dentistas Denise2,90.00,(41)99568-8791
+
+editar dentistas Denise,150.00,(41)99787-8283
+
+remover dentistas Denise2
+
+inserir agendamento 03/01/2020,09:30:00,Gabriela,Denise,LimpezaDental
+
+lista procedimento
+lista agendamento
+lista dentistas
+lista paciente
+lista recurso
+
+termino
+
+inserir agendamento 03/01/2020,09:30:00,Rodolfo,Paulo,LimpezaDental
+inserir agendamento 04/01/2020,09:30:00,Rodolfo,Denise,LimpezaDental
+
+termino

@@ -6,131 +6,170 @@ let curriculumData = [];
 let studentData = [];
 
 function fetchCurriculumData(year) {
+  // Your code for fetching curriculum data
 }
 
 function fetchStudentData() {
+  // Your code for fetching student data
 }
 
 function renderCurriculumGrid() {
+  // Your code for rendering the curriculum grid
 }
 
 function handleCellLeftClick(event) {
+  // Your code for handling left-click on cells
 }
 
 function handleCellRightClick(event) {
+  // Your code for handling right-click on cells
 }
 
 function handleStudentRAInputChange(event) {
+  // Your code for handling student RA input change
 }
-
 
 curriculumGrid.addEventListener('click', handleCellLeftClick);
 curriculumGrid.addEventListener('contextmenu', handleCellRightClick);
 studentRAInput.addEventListener('input', handleStudentRAInputChange);
 
-
 function init() {
-  // fetchCurriculumData(1998); // Change the
+  // Your initialization code
 }
 
-function convertXmlToJson() {
+function criarGradeCurricular() {
+  const tabela = document.getElementById("curriculum-grid");
+
+  // Clear existing table rows if any
+  tabela.innerHTML = "";
+
+  curriculumData.forEach((student, index) => {
+    if (index === 0) {
+      const headers = Object.keys(student);
+      const headerRow = document.createElement("tr");
+      for (let header of headers) {
+        const headerCell = document.createElement("th");
+        headerCell.setAttribute("class", "cell-row text-nowrap header-cell");
+        headerCell.textContent = header;
+        headerRow.appendChild(headerCell);
+      }
+      tabela.appendChild(headerRow);
+    }
+
+    const dataRow = document.createElement("tr");
+    const headers = Object.keys(student);
+    for (let header of headers) {
+      const dataCell = document.createElement("td");
+      dataCell.setAttribute("class", "cell-row text-nowrap data-cell");
+      dataCell.textContent = student[header];
+      dataRow.appendChild(dataCell);
+    }
+    tabela.appendChild(dataRow);
+  });
+}
+
+async function convertXmlToJson() {
+  const loadingContainer = document.querySelector('.loading-container');
+
+  loadingContainer.style.display = 'flex';
+
+  const inputFile = document.getElementById('input-file');
   const fileInput = document.getElementById('xmlFileInput');
   const file = fileInput.files[0];
 
   const reader = new FileReader();
-  reader.onload = function(event) {
-    console.log(' do i enter here ?')
-    const xmlString = event.target.result;
-    const parser = new DOMParser();
-    const xmlDoc = parser.parseFromString(xmlString, 'text/xml');
-    const json = mountJson(xmlDoc);
-    console.log('json', json);
 
-    
+  const xmlToJsonPromise = new Promise((resolve, reject) => {
+    reader.onload = function (event) {
+      const xmlString = event.target.result;
+      const result = xmlToJSON(xmlString);
+      resolve(result);
+    };
 
-    // const firstElement = xmlDoc.getElementsByName('ALUNOS_CURSO')
-    // // const firstElement = rootElement.getElementsByName('ALUNOS_CURSO');
-    // console.log(firstElement.nodeName, firstElement);
-
-  };
+    reader.onerror = function (event) {
+      reject(event.target.error);
+    };
+  });
 
   reader.readAsText(file);
-};
 
-function mountJson(xml){
-  const rootElement = xml.documentElement;
-  const data = populateData({},rootElement.children);
-  console.log('data', data)
-
-  return data;
-}
-
-
-
-function populateData(object, array){
-  let data = object;
-  let t = {}
-
-  debugger;
-  for (let x=0; x< array.length; x++){
-    const temp = array[x];
-
-    const name = temp.getAttribute("name");
-    console.log('name', name)
-    if(name && name.length > 0){
-      data[name] = {
-        name
-      };
-      t = { name };
+  try {
+    const jsonResult = await xmlToJsonPromise;
+    console.log('xmlToJSON finished:', jsonResult);
+    if(curriculumData.length > 0){
+      inputFile.style.display = 'none';
+      loadingContainer.style.display = 'none';
     }
-    console.log(data, 'dataAntes')
-    debugger;
-    data[name] ={...data[name], ...populateData(data, temp.children)}
-    debugger;
-    console.log(data, 'dataDps')
+    criarGradeCurricular();
+  } catch (error) {
+    console.error('Error converting XML to JSON:', error);
   }
-
-  debugger;
-  return data;
 }
 
-function xmlToJson(xml) {
-  const data = {};
-
-  const rootElement = xml.documentElement;
-  console.log(rootElement.getElementsByTagName(rootElement.nodeName), 'hi')
-  data[rootElement.nodeName] = {
-    children: [
-      ...xml.getElementsByTagName(rootElement.nodeName)
-    ]
-  };
-
-
-  console.log('data', data[rootElement.nodeName], 'datasda', data[rootElement.nodeName].children.length)
-  for(const child of data[rootElement.nodeName].children){
-    console.log('my child is', child)
-  }
-  // const alunoCurso = rootElement.getElementsByTagName('ALUNO_CURSO');
-  // console.log('aluno Curso', alunoCurso)
-
-  // // Process each ALUNO element
-  // const alunoElements = rootElement.getElementsByTagName('ALUNO');
-  // console.log('alunoElements', alunoElements)
-  // for (let i = 0; i < alunoElements.length; i++) {
-  //   const alunoElement = alunoElements[i];
-  //   const alunoData = {};
-
-  //   // Process each child element of ALUNO
-  //   const childElements = alunoElement.children;
-  //   for (let j = 0; j < childElements.length; j++) {
-  //     const childElement = childElements[j];
-  //     alunoData[childElement.nodeName] = childElement.textContent;
-  //   }
-
-  //   // Add the alunoData to the data object
-  //   data[rootElement.nodeName]['ALUNO'] = data[rootElement.nodeName]['ALUNO'] || [];
-  //   data[rootElement.nodeName]['ALUNO'].push(alunoData);
-  // }
-
-  return data;
+async function xmlToJSON(xmlString) {
+  const parser = new DOMParser();
+  const xmlDoc = parser.parseFromString(xmlString, 'text/xml');
+  return await xmlToJson(xmlDoc);
 }
+
+async function xmlToJson(xml) {
+  let student = {};
+  let agroupment = [];
+
+  if (xml.nodeType === 9) {
+    for (let i = 0; i < xml.childNodes.length; i++) {
+      const item = xml.childNodes[i];
+      const nodeName = item.nodeName;
+      if (nodeName === 'ALUNOS_CURSO') {
+        return await xmlToJson(item);
+      }
+    }
+  }
+
+  if (xml.nodeType === 1) {
+    const cleanedChildNodes = Array.from(xml.childNodes).filter((node, index) => {
+      if (node.nodeName === '#text' && /^\s*$/.test(node.nodeValue)) {
+        return false;
+      }
+      return true;
+    });
+
+    for (let i = 0; i < cleanedChildNodes.length; i++) {
+      const item = cleanedChildNodes[i];
+      const nodeName = item.nodeName;
+
+      if (nodeName === 'ALUNO') {
+        agroupment.push(await xmlToJson(item));
+        continue;
+      }
+
+      if (item.data) {
+        return item.data;
+      }
+      if (typeof student[nodeName] === 'undefined') {
+        student[nodeName] = await xmlToJson(item);
+      }
+    }
+  }
+
+  curriculumData = agroupment;
+  return student;
+}
+
+function writeDataToLocalFile(data) {
+  const jsonData = JSON.stringify(data);
+  localStorage.setItem('data.json', jsonData);
+}
+
+function readDataFromLocalFile() {
+  const jsonData = localStorage.getItem('data.json');
+  if (jsonData) {
+    const data = JSON.parse(jsonData);
+    return data;
+  } else {
+    return null;
+  }
+}
+
+// Call your init function or any other necessary code here
+init();

@@ -6,24 +6,37 @@
     <title>Curriculum Viewer</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@1,300;1,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,700;1,800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonym
+ous">
+    <link rel="stylesheet" href="style.css">
     <script src='main.js'></script>
 </head>
 <body>
-    <div id="curriculum-grid">
-        <!-- Curriculum grid will be dynamically generated here -->
-      </div>
-    
-      <div id="popup" class="hidden">
-        <!-- Popup window content will be dynamically generated here -->
-      </div>
-    
+  <div class="card m-2">
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover" id="curriculum-grid">
+        </table>
+    </div>
+    <div class="loading-container">
+    <p class="loading-text">Loading...</p>
+    </div>
+
+  </div>
+
       <div id="search-container">
         <label for="student-ra">Enter Student RA:</label>
         <input type="text" id="student-ra">
       </div>
     
+      <div id="input-file">
       <input type="file" id="xmlFileInput">
-  <button onclick="convertXmlToJson()">Convert</button>
+      <button onclick="convertXmlToJson()">Convert</button>
+    </div>
+  
 
   <script src="script.js"></script>
 </body>

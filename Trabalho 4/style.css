@@ -1,0 +1,75 @@
+.aprovado { background-color: green; }
+.reprovado { background-color: red; }
+.matriculado { background-color: blue; }
+.equivalencia { background-color: yellow; }
+.nao-cursado { background-color: white; }
+
+
+.loading-container {
+display: flex;
+justify-content: center;
+align-items: center;
+height: 100vh;
+}
+          
+.loading-text {
+font-size: 24px;
+}
+
+.table thead th {
+        text-overflow: ellipsis; /* Truncate the text with an ellipsis */
+        overflow: hidden;
+    }
+.card {
+        max-height: 500px;
+        max-width: 900px; /* Modified width to 500px */
+        overflow: auto; /* Added overflow property for scrolling */
+    }
+/* 
+    .cell-row {
+        padding: 12px;
+        font-size: 12px;
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        border: 1px solid;
+        border-radius: 10px;
+        word-wrap: break-word;
+        white-space: normal;
+        display: contents;
+        flex-wrap: wrap;
+    }       
+
+#curriculum-grid {
+        table-layout: fixed;
+        width: 100%;
+} */
+      
+
+tr{
+        /* display: flex; */
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        word-wrap: break-word;
+        white-space: normal;
+        gap: 0; 
+        max-height: 26px !important;
+        line-height: 14px;
+}
+
+th{
+        font-size: 10px;
+}
+
+td{
+        font-size: 8px;
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        border: 1px solid;
+        border-radius: 10px;
+        word-wrap: break-word;
+        white-space: normal;
+}
+
+
+
+.header-cell, .data-cell {
+        flex-grow: 1;
+        min-width: 0;
+      }

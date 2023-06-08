@@ -46,6 +46,7 @@ function criarGradeCurricular() {
   curriculumData.forEach((student, index) => {
     if (index === 0) {
       const headers = Object.keys(student);
+      // headers.pop();
       const headerRow = document.createElement("tr");
       for (let header of headers) {
         const headerCell = document.createElement("th");
@@ -58,12 +59,46 @@ function criarGradeCurricular() {
 
     const dataRow = document.createElement("tr");
     const headers = Object.keys(student);
+    let x = -1;
+    let sigla = ''
+    let status = ''
     for (let header of headers) {
       const dataCell = document.createElement("td");
       dataCell.setAttribute("class", "cell-row text-nowrap data-cell");
-      dataCell.textContent = student[header];
+      if(header.includes('SIGLA')){
+        sigla = student[header];
+      }
+      if(header.includes('SITUACAO_CURRICULO')){
+        status = student[header]
+      }
+
+      if(header.includes('ID') || header.includes('NUM') || header.includes('COD') ||  header.includes('ANO')){
+        x = !isNaN(parseInt(student[header])) ? parseInt(student[header]) : student[header];
+      }
+      else{
+        x = !isNaN(parseFloat(student[header])) ? parseFloat(student[header]).toFixed(2) : student[header];
+      }
+      dataCell.textContent = x;
       dataRow.appendChild(dataCell);
     }
+    if (sigla && sigla.length > 0) {
+      console.log('status', status == 'A', status, sigla)
+      let color = 'white';
+      if(sigla === 'Aprovado'){
+        color = 'light-green';
+      }
+      if(sigla === 'Reprovado'){
+        color = 'light-red';
+      }
+      if(sigla==='Repr. Freq'){
+
+      }
+      if(sigla==='Cancelado'){
+        
+      }
+      dataRow.setAttribute('style', `background-color: ${color}`);
+    }
+    
     tabela.appendChild(dataRow);
   });
 }
@@ -116,6 +151,7 @@ async function xmlToJson(xml) {
   let student = {};
   let agroupment = [];
 
+
   if (xml.nodeType === 9) {
     for (let i = 0; i < xml.childNodes.length; i++) {
       const item = xml.childNodes[i];
@@ -133,6 +169,10 @@ async function xmlToJson(xml) {
       }
       return true;
     });
+
+    if(cleanedChildNodes.length<=0){
+      return '';
+    }
 
     for (let i = 0; i < cleanedChildNodes.length; i++) {
       const item = cleanedChildNodes[i];
